@@ -619,3 +619,35 @@ int* healthPointer{ &playerHealth };
 
 *healthPointer = 25; // Modified playerHealth through pointer
 ```
+
+& refers to a variables address, rather than it's value.
+
+``` c++
+*pointer = variable
+// the value of the variable which pointer points to is modified, opposed to pointer now referencing variable.
+```
+
+call function on pointer:
+
+```c++
+(*pointer).Function(); // Old, never used
+pointer->Function(); // Use this instead
+
+// example:
+target->Describe();
+target->Health -= 4;
+
+Pointers may have a null value, not referencing any variable. Check they arent null with
+
+```c++
+if (*pointer == nullptr)
+```
+
+pointers are similar to C# reference types.
+
+Order
+
+```c++
+const int* p // pointer to constant int
+int* const p // constant pointer to int
+```
