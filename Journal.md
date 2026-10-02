@@ -594,5 +594,28 @@ char: ✗ 1 byte
 int: ✗ 4 bytes
 double: ✗ 8 bytes
 
+##### 5.
 
+A function calls another, what is created, what is destroyed when it returns:
 
+✗ A stack frame, parameters, locals, return address is all stored and deleted.
+
+##### 6. 
+
+What does stack overflow mean, what causes it usually in your own code?:
+
+✗ Lack of condition on a recursive function, causing it to loop infinitely until no memory left 
+
+#### Pointers
+
+pointers are addresses in memory.
+They are a variable that holds a location, rather than a (informative) value.
+
+Example:  
+
+``` c++
+int playerHealth{ 40 };
+int* healthPointer{ &playerHealth };
+
+*healthPointer = 25; // Modified playerHealth through pointer
+```
