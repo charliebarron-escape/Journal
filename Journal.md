@@ -550,3 +550,49 @@ _For each item, say whether it belongs in the header, the source file, or either
 
 8. int main()
    Source file, Headers should contain declarations only. ✓
+
+### Journal 4, 02/10/26
+
+#### Task 1
+
+##### 1.
+
+Write 13 in binary:
+
+1101 ✓  
+
+Write 255 in hexadecimal:
+
+FF or 0xCCCCCC ✓
+
+0xFF
+
+##### 2.
+
+A 4-byte int holds upto:
+
+4.6 million (2.3 Million signed) ✗
+
+4 Billion (3 Billion signed)
+
+Why is the negative limit one further from zero:
+
+Integers has an even number of possible values, Zero is used, making the possible (Non-zero) values odd.  
+Negative sign is given an extra number as the positive side has zero. ✓
+
+##### 3.
+What happens when you add 1 to the largest int:
+
+It wraps around ✓
+-2 Billion
+
+##### 4.
+
+sizeof():
+
+char: ✗ 1 byte
+int: ✗ 4 bytes
+double: ✗ 8 bytes
+
+
+
