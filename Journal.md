@@ -559,7 +559,7 @@ _For each item, say whether it belongs in the header, the source file, or either
 
 Write 13 in binary:
 
-1101 ✓  
+1101 ✓
 
 Write 255 in hexadecimal:
 
@@ -581,6 +581,7 @@ Integers has an even number of possible values, Zero is used, making the possibl
 Negative sign is given an extra number as the positive side has zero. ✓
 
 ##### 3.
+
 What happens when you add 1 to the largest int:
 
 It wraps around ✓
@@ -600,20 +601,20 @@ A function calls another, what is created, what is destroyed when it returns:
 
 ✗ A stack frame, parameters, locals, return address is all stored and deleted.
 
-##### 6. 
+##### 6.
 
 What does stack overflow mean, what causes it usually in your own code?:
 
-✗ Lack of condition on a recursive function, causing it to loop infinitely until no memory left 
+✗ Lack of condition on a recursive function, causing it to loop infinitely until no memory left
 
 #### Pointers
 
 pointers are addresses in memory.
 They are a variable that holds a location, rather than a (informative) value.
 
-Example:  
+Example:
 
-``` c++
+```c++
 int playerHealth{ 40 };
 int* healthPointer{ &playerHealth };
 
@@ -622,14 +623,14 @@ int* healthPointer{ &playerHealth };
 
 & refers to a variables address, rather than it's value.
 
-``` c++
+```c++
 *pointer = variable
 // the value of the variable which pointer points to is modified, opposed to pointer now referencing variable.
 ```
 
 call function on pointer:
 
-```c++
+````c++
 (*pointer).Function(); // Old, never used
 pointer->Function(); // Use this instead
 
@@ -641,7 +642,7 @@ Pointers may have a null value, not referencing any variable. Check they arent n
 
 ```c++
 if (*pointer == nullptr)
-```
+````
 
 pointers are similar to C# reference types.
 
@@ -651,3 +652,21 @@ Order
 const int* p // pointer to constant int
 int* const p // constant pointer to int
 ```
+
+### Journal 5, 03/10/26
+
+#### Point and Colour
+
+##### Point.cpp
+
+_Operator-_:
+
+The minus operator for a point is simply:
+
+```c++
+return { x - rhs.x, y - rhs.y };
+```
+
+#### Build debug
+
+Originally Rider wasn't entering debug mode properly, It would ignore Breakpoints and asserts. After recreating the CMake project it began to work properly.
