@@ -667,6 +667,33 @@ The minus operator for a point is simply:
 return { x - rhs.x, y - rhs.y };
 ```
 
+_DistanceTo_:
+
+The code for the DistanceTo function is:
+
+```c++
+float Point::DistanceTo(const Point& target) const
+{
+    int dx = x - target.x;
+    int dy = y - target.y;
+    return std::sqrt(static_cast<float>(dx * dx + dy * dy));
+}
+```
+
 #### Build debug
 
 Originally Rider wasn't entering debug mode properly, It would ignore Breakpoints and asserts. After recreating the CMake project it began to work properly.
+
+#### Final notes:
+
+##### DistanceTo:
+
+The DistanceTo function calculated to difference in x and y to a given target, called Dx and Dy respectively.
+Both Dx and Dy where raised to the power of 2, added and then square rooted. This gives us the correct distance between two points.
+
+##### Testing
+
+I tested that the final code worked by adjusting the values for the characters position and colour.
+Adjusting the playerLocation variable and the colour put into the console showed that the code was no longer Hardcoded to put the player in a specific position with a specific colour.
+
+This means we will be able to move the player around easily. However, I feel we should first create a new class for a block, which contains a point and colour, and provides functions which allow for all objects in a scene to be iterated over and drawn.
