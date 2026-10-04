@@ -697,3 +697,53 @@ I tested that the final code worked by adjusting the values for the characters p
 Adjusting the playerLocation variable and the colour put into the console showed that the code was no longer Hardcoded to put the player in a specific position with a specific colour.
 
 This means we will be able to move the player around easily. However, I feel we should first create a new class for a block, which contains a point and colour, and provides functions which allow for all objects in a scene to be iterated over and drawn.
+
+### Journal 6, 05/10/26
+
+#### Three additions to add movement to the @
+
+1. Add `Input InputHandler` to Engine.h
+2. Add to`Engine::HandleInput()`:
+
+```C++
+void Engine::HandleInput()
+{
+    inputHandler.CheckForEvent();
+}
+```
+
+3. Add movement and bounds logic to `Engine::Update()`:
+
+```c++
+    Point delta{Point::Zero};
+
+    switch (inputHandler.GetKeyCode())
+    {
+    case SDLK_UP:
+        delta = {0, -1}; // up is one row less
+        break;
+    case SDLK_DOWN:
+        delta = {0, 1};
+        break;
+    case SDLK_LEFT:
+        delta = {-1, 0};
+        break;
+    case SDLK_RIGHT:
+        delta = {1, 0};
+        break;
+    default:
+        break; // any other key: no movement
+    }
+
+    Point newLocation{playerLocation + delta};
+    bool inBounds{ (newLocation.x >= 0 && newLocation.x < screenWidth) && (newLocation.y >= 0 && newLocation.y < screenHeight) };
+
+    if (inBounds)
+    {
+        playerLocation = newLocation;
+    }
+```
+
+#### How does the use of SDL_WaitEvent make the Rogue-like different to a platformer?
+
+Our game will only process updates for other entities (For example, Enemies) once the player has moved.
