@@ -781,3 +781,11 @@ Those both are part of the game loop, It would be much more difficult to setup a
 5. if the test code is correct, it only states that the tests were passed ✓
 
 6. in case of floating point imprecision, which may lead to fails despite no changes to the test code. ✓
+
+#### Problem 2
+
+1. Same value, a two separate copies of an engine will work the same, Seeds are designed such that they always produce the same values ✓
+2. Different Values ✓ Seeds work such that they will always generate random values. if the value is incremented by one, A completely seperate value is generated.
+3. Same values ✓ The engine is copied, creating a separate engine with the same values
+4. Different Values ✓ Two draws from one engine, the engine moves on
+5. Different Values ✓ Different distributions ,different values can be drawn
