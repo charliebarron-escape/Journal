@@ -764,3 +764,20 @@ _We tested Point but deliberately did not unit-test Input or Render. What makes 
 test this way?_:
 
 Those both are part of the game loop, It would be much more difficult to setup and print out helpful information for those parts of the game as they require either user input or visuals.
+
+### Journal 7, 05/10/26
+
+#### Questions
+
+1. &thing references the variables address ✓  
+   *ptr acts as a reference to a variable ✓
+
+2. Is *ptr null? ✓ is it nullptr?
+
+3. SDL is C, and thus has no references
+
+4. It can test cases without launching the full game, making it faster. ✓ Can setup tests
+
+5. if the test code is correct, it only states that the tests were passed ✓
+
+6. in case of floating point imprecision, which may lead to fails despite no changes to the test code. ✓
