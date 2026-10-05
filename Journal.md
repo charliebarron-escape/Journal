@@ -789,3 +789,17 @@ Those both are part of the game loop, It would be much more difficult to setup a
 3. Same values ✓ The engine is copied, creating a separate engine with the same values
 4. Different Values ✓ Two draws from one engine, the engine moves on
 5. Different Values ✓ Different distributions ,different values can be drawn
+
+### Journal 8, 05/10/26
+
+#### String formatting
+
+```c++
+std::format("{:^10}\n", "String")
+```
+Put "String" in the centre of 10 spaces
+
+```c++
+std::format("{:-^10}\n", " String ")
+```
+Put " String " in the centre of 10 dashes
