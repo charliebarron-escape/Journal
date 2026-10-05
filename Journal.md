@@ -747,3 +747,20 @@ void Engine::HandleInput()
 #### How does the use of SDL_WaitEvent make the Rogue-like different to a platformer?
 
 Our game will only process updates for other entities (For example, Enemies) once the player has moved.
+
+#### Lab 05
+
+_In Part D you broke Point and a test caught it. How is that different from the way you would have
+found the same bug in Lab 3?_:
+
+In lab 3 we would have placed a temporary `Assert()` case in our `Engine::Render()` function, this would have been slower, harder to setup more cases for, and wouldn't have provided as clear of information as using separated TestCases is.
+
+_Why did the distance test need Catch::Approx() when the addition test did not? What is different
+about the two return types?_:
+
+In case of floating point imprecision, which may lead to improper test fails, which result from no changes to the code.
+
+_We tested Point but deliberately did not unit-test Input or Render. What makes those two harder to
+test this way?_:
+
+Those both are part of the game loop, It would be much more difficult to setup and print out helpful information for those parts of the game as they require either user input or visuals.
