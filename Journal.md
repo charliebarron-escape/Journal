@@ -803,3 +803,24 @@ Put "String" in the centre of 10 spaces
 std::format("{:-^10}\n", " String ")
 ```
 Put " String " in the centre of 10 dashes
+
+### Journal 9, 05/10/26
+
+#### Lab 06 Questions,
+
+_We moved the drawing code out of Engine and into Actor::Render, and the wall check out of Engine
+and into Map. Why is it better for each class to own its own job, rather than Engine doing everything?_:
+
+It makes reading the code clearer, There isn't one large "God" class that handles everything regarding the games logic. It is instead split into smaller parts which are focused on specific aspects.
+If there is an error it is faster to single down where the problem is, and other people working on the code will find it easier to understand the program's code.
+
+_Part D warned that Actor player = map.GetPlayer(); (without the &) would be a bug. In your own
+words, what would actually go wrong, and why?_:
+
+We will be modifying a copy of _player_ as opposed to the actual player, This would mean nothing is changing on input, as it gets pushed into a dummy Actor that is immediately destroyed, whilst the Actor we want to modify is unaffected.
+
+_Map stores its actors in a std::vector and keeps an Actor* pointing at one of them. Booklet 09
+Demonstration 7 showed a pointer to something that no longer existed. Write down one way that
+vector could make this pointer wrong — you are not expected to solve it, only to notice it._:
+
+An Actor could be removed/Destroyed, which would make the pointer invalid. It would no longer point to the correct Actor, or it could become a nullptr.
