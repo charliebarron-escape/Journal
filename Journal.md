@@ -797,11 +797,13 @@ Those both are part of the game loop, It would be much more difficult to setup a
 ```c++
 std::format("{:^10}\n", "String")
 ```
+
 Put "String" in the centre of 10 spaces
 
 ```c++
 std::format("{:-^10}\n", " String ")
 ```
+
 Put " String " in the centre of 10 dashes
 
 ### Journal 9, 05/10/26
@@ -819,8 +821,43 @@ words, what would actually go wrong, and why?_:
 
 We will be modifying a copy of _player_ as opposed to the actual player, This would mean nothing is changing on input, as it gets pushed into a dummy Actor that is immediately destroyed, whilst the Actor we want to modify is unaffected.
 
-_Map stores its actors in a std::vector and keeps an Actor* pointing at one of them. Booklet 09
+_Map stores its actors in a std::vector and keeps an Actor\* pointing at one of them. Booklet 09
 Demonstration 7 showed a pointer to something that no longer existed. Write down one way that
 vector could make this pointer wrong — you are not expected to solve it, only to notice it._:
 
 An Actor could be removed/Destroyed, which would make the pointer invalid. It would no longer point to the correct Actor, or it could become a nullptr.
+
+### Journal 10, 07-10-26
+
+#### Questions
+
+Engine 0-99, you want 0-6, how many spare values?
+
+100 mod 7 = 2
+
+Which values get thrown away?
+
+98, 99
+
+Two monsters attack, 1/3 to hit, P(neither hits)?
+
+4/9
+
+Expected value of 2d4?
+
+5
+
+Same seed, same code, different laptop - Same dungeon?
+
+yes, that is the point.
+
+#### Lab 08, Dungeon Generator
+
+An error I encountered with the dungeon generation was the game freezing and not loading up.
+
+I used the test executable to run the map tests and found that the error still occurred, meaning the issue was apart of the map generation.
+
+I added breakpoints to the visitNode function, and stepped through the code, I found that the game
+immediately froze when reaching any line that called `Rng.GetInt(...);`
+
+Stepping into the function, I found that the code would generate a number, check if it was less than limit, then repeat. Flipping the condition to check if it was larger solved the problem. However, I am unsure when the bug came in, as the code previously worked with tests and was able to pick out numbers without freezing.
