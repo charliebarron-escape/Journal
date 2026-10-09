@@ -861,3 +861,23 @@ I added breakpoints to the visitNode function, and stepped through the code, I f
 immediately froze when reaching any line that called `Rng.GetInt(...);`
 
 Stepping into the function, I found that the code would generate a number, check if it was less than limit, then repeat. Flipping the condition to check if it was larger solved the problem. However, I am unsure when the bug came in, as the code previously worked with tests and was able to pick out numbers without freezing.
+
+### Journal 11, 09/10/26
+
+_What is the expected value of one d6_:
+Any value between 1-6, yes. 3.5, No.
+
+_Your Rng::GetInt() rejects some draws, Roughly how often does it happen twice?_:
+less than 0.0000002%. once in 50 million
+
+_BspRecursionDepth is 8, 2^8 = 256 rooms. What actually limits the number of rooms?_:
+The size of the screen, which determines how many rooms can actually fit. ✓ Maximum room size
+
+_Your dungeon has no overlap check. Why does it not need one_?
+The Bsp ensures all rooms are placed inside separate containers, The containers do not overlap so it is impossible for the Rooms to-do so. ✓
+
+_Two dice summed, versus one draw from range 2-12, which gives a 7 more often, and why?_:
+Two dice as they are more likely to recieve a larger value. ✓ 36, which is multiple of 7
+
+_In one sentence, what does recursive mean?_:
+It contains itself, I.e., a function which calls it's self until a condition is complete, or a tree.
