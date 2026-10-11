@@ -877,7 +877,27 @@ _Your dungeon has no overlap check. Why does it not need one_?
 The Bsp ensures all rooms are placed inside separate containers, The containers do not overlap so it is impossible for the Rooms to-do so. ✓
 
 _Two dice summed, versus one draw from range 2-12, which gives a 7 more often, and why?_:
-Two dice as they are more likely to recieve a larger value. ✓ 36, which is multiple of 7
+Two dice as they are more likely to receive a larger value. ✓ 36, which is multiple of 7
 
 _In one sentence, what does recursive mean?_:
 It contains itself, I.e., a function which calls it's self until a condition is complete, or a tree.
+
+### Journal 12, 11/10/26
+
+_Explain the difference between "in view" and "explored", and why the game needs to remember explored
+tiles at all._:
+
+"Explored" refers to tiles we've been to before but cannot currently see, "In view" means we can currently see it.
+
+This can be used to make the map less cluttered when first ran, add tension from the inability to see enemies/items. And make exploring more engaging as you are unable to see an area without exploring it first.
+
+_IsInFov is a const method but it changes a tile's explored flag. Why is that allowed, and why is it
+reasonable here rather than a cheat? Use the test from Part C: could a caller tell the difference?_:
+
+It is modifying a mutable value, which can be changed despite being contained in a constant object. It is sensible to use it here as the environment itself isn't being modified, but we need to store data which can be changed once. A caller function (I.e the renderer), wouldn't be able to tell if the value was modified, thus this is not a "cheat".
+
+_Booklet 08 said mutable is for caches and counters, and very little else. Describe one use of mutable
+that would be a cheat — a member you could mark mutable to get a const function to compile, where a
+caller would be able to tell._:
+
+A health bar for a breakable wall, If the health goes below or reaches zero then it's value must have been changed, meaning a caller would be able to tell it's value changed. In our case the wall should be stored as an actor without the ability to move or attack, and affecting the players vision.
