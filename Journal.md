@@ -901,3 +901,29 @@ that would be a cheat — a member you could mark mutable to get a const functio
 caller would be able to tell._:
 
 A health bar for a breakable wall, If the health goes below or reaches zero then it's value must have been changed, meaning a caller would be able to tell it's value changed. In our case the wall should be stored as an actor without the ability to move or attack, and affecting the players vision.
+
+### Journal 13, 12/10/2026
+
+_What calls a destructor?_:
+
+It is called by the C++ garbage collector when an object has been marked for destruction. X Compiler
+
+_Name the one place clean up code can go that the language always visits_:
+
+Destructors, Constructors. ✓
+
+_Why must a destructor never throw?_:
+
+It will cause the code to be exited earlier than anticipated, leading to errors ✓
+
+_if (!stream) - what two problems does that one check cover?_: X
+
+Never opened or it has failed since opening.
+
+_A function reports a failier by returing -1, what is wrong with that?_:
+
+you cannot return a regular -1 that isn't an error code. ✓
+
+_Why not write the save straight to the real file?_:
+
+the code to write the file may not run properly, leading to a half written save file which cannot be opened. ✓ Copy the file over it when done
