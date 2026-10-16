@@ -926,4 +926,58 @@ you cannot return a regular -1 that isn't an error code. ✓
 
 _Why not write the save straight to the real file?_:
 
-the code to write the file may not run properly, leading to a half written save file which cannot be opened. ✓ Copy the file over it when done
+the code to write the file may not run properly, leading to a half written save file which cannot be opened. ✓ Copy the file over it when done.
+
+### Journal 14, 16/10/26
+
+_Where do a std::vector's elements live?_:
+
+Heap ✓
+
+_What happened to that buffer when the vector outgrows it?_:
+
+It is freed and copied to a new location with more space reserved. ✓
+
+_Why did player work for a while after it had gone stale?_: X
+
+Freed is not erased, nothing is written over it.
+
+_What does Actor* player own?_:
+
+Address for an actor. It owns nothing. ✓ Used to look at an changed stuff, do not delete "player".
+
+_Why is vector<uniqueptr<Actor>> slower to walk than vector<Actor> and what did that slowness buy?_: 
+
+It is slower as it accesses the Actors as individual memory, instead of a contiguous block to loop over. It means the Actors aren't moved throughout memory as Actors are created and destroyed. ✓ The pointer vector points to the actors, so adding actors doesn't move the vector, the address values in the pointers don't change.
+
+#### Note
+
+.push_back() is the equivalent of .Append().
+
+```c++
+library.push_back(original);
+```
+
+Copied 500,000 intergers
+
+```c++
+library.push_back(std::move(original));
+```
+
+creates pointer to intergers
+
+```c++
+library.push_back(Recording("Take three", 500,000);
+```
+
+Create new
+
+Wrong (Creates copy):
+```c++
+Recording(Recording&& other) noexcept : sample(other.samples) {}; // COPY
+```
+
+Correct (Moves):
+```c++
+Recording(Recording&& other) noexcept : sample(std::move(other.samples)) {};
+```
